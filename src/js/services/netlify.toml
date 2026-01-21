@@ -1,0 +1,107 @@
+[build]
+  publish = "."
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+```
+
+---
+
+### SCHRITT 4: Auf Netlify deployen
+
+**Gehe zu:** https://app.netlify.com/
+
+1. **"Add new site"** → **"Import an existing project"**
+2. **"Deploy with GitHub"**
+3. **Wähle:** "erste-hilfe-app" Repository
+4. **Deploy settings:**
+   - Build command: (leer lassen)
+   - Publish directory: `.`
+5. **Klicke:** "Deploy site"
+
+---
+
+### SCHRITT 5: Environment Variable setzen
+
+**In Netlify Dashboard:**
+
+1. **Site settings** → **Environment variables**
+2. **"Add a variable"**
+3. **Key:** `GEMINI_API_KEY`
+4. **Value:** (Erstelle einen NEUEN Gemini Key und füge ihn hier ein)
+5. **"Create variable"**
+6. **"Redeploy"** klicken
+
+---
+
+### SCHRITT 6: Neue URL bekommen
+
+**Nach dem Deploy:**
+```
+https://DEINE-APP.netlify.app
+```
+
+✅ **API-Key ist jetzt sicher!**
+✅ **Niemand kann ihn sehen!**
+✅ **Komplett kostenlos!**
+
+---
+
+## 📁 Finale Projektstruktur:
+```
+erste-hilfe-app/
+├── index.html
+├── manifest.json
+├── sw.js
+├── netlify.toml           ← NEU!
+├── netlify/               ← NEU!
+│   └── functions/
+│       └── gemini.js      ← NEU! (Key hier)
+└── src/
+    ├── css/
+    ├── js/
+    │   └── services/
+    │       └── GeminiService.js  ← GEÄNDERT!
+    └── assets/
+```
+
+---
+
+## 🎯 Was passiert jetzt?
+
+**Vorher (UNSICHER):**
+```
+User → App → Gemini API (mit Key im Code ❌)
+```
+
+**Nachher (SICHER):**
+```
+User → App → Netlify Function → Gemini API (Key auf Server ✅)
+```
+
+---
+
+## 💰 Kosten?
+
+**Netlify Free Tier:**
+- ✅ 125.000 Function Calls/Monat KOSTENLOS
+- ✅ Mehr als genug für deine App!
+
+---
+
+## 🚀 Zusammenfassung - Was du tun musst:
+```
+1. ✅ Alten API-Key in Google Cloud LÖSCHEN (SOFORT!)
+2. ✅ Budget-Limit setzen ($2)
+3. ✅ netlify/functions/gemini.js erstellen
+4. ✅ GeminiService.js anpassen
+5. ✅ netlify.toml erstellen
+6. ✅ Auf Netlify deployen
+7. ✅ Neuen Key als Environment Variable setzen
+8. ✅ Auf Handy neu installieren
